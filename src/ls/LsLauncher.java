@@ -36,16 +36,10 @@ public class LsLauncher {
         }
 
         Ls ls = new Ls(new File(nameOfFile));
-        if (h) ls.h();
-        else if (l) ls.l();
-        if (r) ls.r();
-        if (o != null) {
-            try {
-                ls.o(o, ls.resultList);
-            } catch (IOException e) {
-                System.err.println(e.getMessage());
-            }
-        } else
-            ls.print(ls.resultList);
+        try {
+            ls.output(o, ls.ls(l, h, r));
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+        }
     }
 }
